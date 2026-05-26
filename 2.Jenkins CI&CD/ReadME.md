@@ -130,6 +130,8 @@ Go to GitHub Repository: Settings → Webhooks → Add Webhook
 Payload URL: http://<EC2-IP>:8080/github-webhook/
 Content Type: application/json
 Events: Just the push event
+![alt text](image-3.png)
+
 
 Environment Variables in Jenkins
 Use Jenkins Credentials Manager: Manage Jenkins → Credentials
