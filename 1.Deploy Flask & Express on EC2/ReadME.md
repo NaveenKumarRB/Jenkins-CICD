@@ -13,6 +13,8 @@ Security Group Open Ports:
 5000 → Flask
 8080 → Jenkins
 
+![alt text](image-2.png)
+
 Connect to EC2
 ssh -i your-key.pem ubuntu@<EC2-PUBLIC-IP>
 
@@ -32,16 +34,39 @@ Clone Repositories
 Flask Repo
 
 cd /opt
-sudo git clone https://github.com/yourname/flask-app.git
+sudo git clone https://github.com/yourname/flask-app.git--app.py
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Flask Backend Running"
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+
 
 Express Repo
 
-sudo git clone https://github.com/yourname/express-app.git
+sudo git clone https://github.com/yourname/express-app.git -- server.js
+
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Express Frontend Running");
+});
+
+app.listen(3000, "0.0.0.0", () => {
+  console.log("Server running on port 3000");
+});
 
 Setup Flask Application : cd /opt/flask-app
 Create Virtual Environment
-    python3 -m venv venv
-    source venv/bin/activate
+    sudo python3 -m venv venv
+    sudo source venv/bin/activate
 
 Install Requirements
     pip install -r requirements.txt
@@ -65,4 +90,8 @@ pm2 startup
 Verify Applications : 
 
     http://<EC2-IP>:5000 - Flask Backend Running
+
+    ![alt text](image-1.png)
     http://<EC2-IP>:3000 - Express Frontend Running
+
+    ![alt text](image.png)
